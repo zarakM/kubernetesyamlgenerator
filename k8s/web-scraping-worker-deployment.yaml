@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-scraping-worker
+  namespace: default
+  labels:
+    app: web-scraping-worker
+    environment: prod
+  annotations: {}
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-scraping-worker
+  template:
+    metadata:
+      labels:
+        app: web-scraping-worker
+        environment: prod
+    spec:
+      containers:
+        - name: worker
+          image: your-image-repo/your-worker-image:specific-version
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 200m
+              memory: 512Mi
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
