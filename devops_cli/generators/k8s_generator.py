@@ -36,7 +36,6 @@ class K8sGenerator:
         user_prompt = f"""
         Request: {request.prompt}
         Environment: {request.environment}
-        Replicas: {request.replicas}
         Namespace: {request.namespace}
         Expose Service: {request.expose} (Type: {request.expose_type})
         

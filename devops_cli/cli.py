@@ -14,12 +14,12 @@ k8s_app = typer.Typer(help="Kubernetes management commands")
 app.add_typer(k8s_app, name="k8s")
 console = Console()
 
+
 @k8s_app.command()
 def generate(
     prompt: str = typer.Option(..., "--prompt", "-p", help="Description of the Kubernetes resources to generate"),
     output: str = typer.Option("./k8s", "--output", "-o", help="Output directory"),
     env: str = typer.Option("dev", "--env", "-e", help="Target environment"),
-    replicas: int = typer.Option(1, help="Number of replicas for deployments"),
     namespace: str = typer.Option("default", "-n", help="Namespace"),
     expose: bool = typer.Option(False, help="Whether to expose deployments via Service"),
     expose_type: str = typer.Option("ClusterIP", help="Service type if exposed (ClusterIP, NodePort, LoadBalancer)")
@@ -34,7 +34,6 @@ def generate(
         prompt=prompt,
         environment=env,
         namespace=namespace,
-        replicas=replicas,
         expose=expose,
         expose_type=expose_type
     )
