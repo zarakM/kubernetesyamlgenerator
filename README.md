@@ -24,4 +24,5 @@ brew install kubeconform
 
 ```bash
 devops-cli k8s generate --prompt "nginx deployment with 2 replicas" --env prod
+devops-cli k8s generate --prompt "kafka deployment" --env env
 ```
