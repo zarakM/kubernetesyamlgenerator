@@ -24,5 +24,6 @@ brew install kubeconform
 
 ```bash
 devops-cli k8s generate --prompt "nginx deployment with 2 replicas" --env prod
+devops-cli k8s generate --prompt "kafka deployment" --env env
 devops-cli k8s generate --prompt "redis deployment with configmap having values for basic kafka settings" --env staging
 ```
